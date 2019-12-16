@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html lang="es-ES"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition  template="/WEB-INF/facelets/template/gdmpopup.xhtml"> 
+        <ui:define name="content-center">
+            <h:form id="form" >
+                <p:growl id="growl" showDetail="true" />
+                <p:dataTable id="cars1" var="p" value="#{listarPersonas.personaList}" 
+                             editable="true" style="margin-bottom:20px"
+                             rows="25" paginator="true"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="25,50,100">
+                    <f:facet name="header">
+                        Lista de personas
+                    </f:facet>
+
+                    <p:ajax event="rowEdit" listener="#{listarPersonas.onRowEdit}" update=":form:growl" />
+                    <p:ajax event="rowEditCancel" listener="#{listarPersonas.onRowCancel}" update=":form:growl" />
+
+                    <p:column headerText="Nombres" filterBy="#{p.nombre}" filterMatchMode="contains">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{p.nombre}" /></f:facet>
+                            <f:facet name="input"><p:inputText id="modelInput" value="#{p.nombre}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Apellidos" filterBy="#{p.apellido}" filterMatchMode="contains">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{p.apellido}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{p.apellido}" style="width:100%" label="Apellidos"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Cedula" filterBy="#{p.nrodoc}" filterMatchMode="contains">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{p.nrodoc}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{p.nrodoc}" style="width:100%" label="Cedula"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Fecha nacimiento"  style="width: 190px;">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <p:calendar value="#{p.fecnac}"  disabled="true"
+                                            pattern="dd/MM/yyyy" 
+                                            mask="true" navigator="true"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:calendar value="#{p.fecnac}"
+                                            pattern="dd/MM/yyyy" 
+                                            mask="true" navigator="true"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Obs.">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{p.obs}" /></f:facet>
+                            <f:facet name="input"><p:inputTextarea value="#{p.obs}" /></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Activo" style="width: 45px;" >
+                        <p:cellEditor>
+                            <f:facet name="output"><p:toggleSwitch value="#{p.activo}" disabled="true" /></f:facet>
+                            <f:facet name="input"><p:toggleSwitch value="#{p.activo}" /></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column style="width:35px" >
+                        <p:rowEditor />
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</html>

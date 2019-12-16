@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+    <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>nova-dark</param-value>
+    </context-param>
+    <context-param>
+        <param-name>primefaces.FONT_AWESOME</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.nti</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.nti</url-pattern>
+    </servlet-mapping>
+    
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+        <cookie-config>
+            <name>SESSIONID</name>
+        </cookie-config>
+    </session-config>
+    
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+    
+    <filter>
+        <filter-name>FilterPermits</filter-name>
+        <filter-class>py.com.documenta.ntimovil.filter.FilterPermits</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterPermits</filter-name>
+        <url-pattern>/restricted/*</url-pattern>
+    </filter-mapping>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>NtiMovilLogin</realm-name>
+        <form-login-config>
+            <form-login-page>/auth/login.nti</form-login-page>
+            <form-error-page>/auth/login.nti</form-error-page>
+        </form-login-config>
+    </login-config>
+    
+    <!--Acceso denegado a un area restringida--> 
+    <error-page>
+        <error-code>403</error-code>
+        <location>/err/errPage.nti</location>
+    </error-page> 
+    
+    <!--Recurso no encontrado-->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/err/errPage.nti</location>
+    </error-page> 
+    
+    <!--Recurso en conflicto--> 
+    <error-page>
+        <error-code>409</error-code>
+        <location>/err/errPage.nti</location>
+    </error-page>
+    
+    <!--Recurso ya no disponible--> 
+    <error-page>
+        <error-code>410</error-code>
+        <location>/err/errPage.nti</location>
+    </error-page>
+    
+    <!-- Error interno -->
+    <error-page>
+        <error-code>500</error-code>
+        <location>/err/errPage.nti</location>
+    </error-page>
+    
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/err/errPage.nti</location>
+    </error-page>    
+    
+    <!-- Sesión no válida 
+    <error-page>
+        <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+        <location>/ErrorHandler</location>
+    </error-page>-->
+    
+    <!--        
+    <error-page>
+        <exception-type>com.documenta.nti.ejb.exception.NandutiEJBException</exception-type>
+        <location>/ErrorHandler</location>
+    </error-page> --> 
+    
+<!--    <filter-mapping>
+        <filter-name>filterPermits</filter-name>
+        <url-pattern>/restricted/*</url-pattern>
+    </filter-mapping>-->
+        
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Area de administradores</web-resource-name>
+            <url-pattern>/restricted/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>HEAD</http-method>
+            <http-method>POST</http-method>
+            <http-method>PUT</http-method>
+            <http-method>DELETE</http-method>
+            <http-method>CONNECT</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>TRACE</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+            <role-name>super</role-name>
+            <role-name>oper</role-name>
+            <role-name>rec-admin</role-name>
+            <role-name>rec-super</role-name>
+            <role-name>rec-cashier</role-name>
+            <role-name>rec-report</role-name>
+            <role-name>sau-super</role-name>
+            <role-name>sau-cashier-test</role-name>
+            <role-name>sau-expert</role-name>
+            <role-name>console</role-name>
+            <role-name>fac-report</role-name>
+            <role-name>fac-super</role-name>
+            <role-name>fac-admin</role-name>
+            <role-name>marketing</role-name>
+            <role-name>comercial-user</role-name>
+            <role-name>comercial-super</role-name>
+            <role-name>registro-cashier</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-role>
+        <role-name>admin</role-name>
+    </security-role>
+    <security-role>
+        <role-name>super</role-name>
+    </security-role>
+    <security-role>
+        <role-name>oper</role-name>
+    </security-role>
+    <security-role>
+        <role-name>rec-admin</role-name>
+    </security-role>
+    <security-role>
+        <role-name>rec-super</role-name>
+    </security-role>
+    <security-role>
+        <role-name>rec-cashier</role-name>
+    </security-role>
+    <security-role>
+        <role-name>rec-report</role-name>
+    </security-role>
+    <security-role>
+        <role-name>sau-super</role-name>
+    </security-role>
+    <security-role>
+        <role-name>sau-cashier-test</role-name>
+    </security-role>
+    <security-role>
+        <role-name>sau-expert</role-name>
+    </security-role>
+    <security-role>
+        <role-name>console</role-name>
+    </security-role>
+    <security-role>
+        <role-name>fac-report</role-name>
+    </security-role>
+    <security-role>
+        <role-name>fac-super</role-name>
+    </security-role>
+    <security-role>
+        <role-name>fac-admin</role-name>
+    </security-role>
+    <security-role>
+        <role-name>marketing</role-name>
+    </security-role>
+    <security-role>
+        <role-name>comercial-user</role-name>
+    </security-role>
+    <security-role>
+        <role-name>comercial-super</role-name>
+    </security-role>
+    <security-role>
+        <role-name>registro-cashier</role-name>
+    </security-role>
+</web-app>

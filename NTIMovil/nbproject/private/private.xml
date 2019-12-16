@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group name="nanduti">
+            <file>file:/home/tokio/proyectos/documenta/nanduti/20191102/NTIMovil/src/java/py/com/documenta/ntimovil/controller/view/admin/ListarRoles.java</file>
+            <file>file:/home/tokio/proyectos/documenta/nanduti/20191102/NTIMovil/src/java/py/com/documenta/ntimovil/controller/view/admin/AsignarUsuarioRole.java</file>
+            <file>file:/home/tokio/proyectos/documenta/nanduti/20191102/NTIMovil/src/java/py/com/documenta/ntimovil/controller/view/admin/ListarUsuarios.java</file>
+            <file>file:/home/tokio/proyectos/documenta/nanduti/20191102/NTIMovil/src/java/py/com/documenta/ntimovil/controller/view/admin/ListarPersonas.java</file>
+            <file>file:/home/tokio/proyectos/documenta/nanduti/20191102/NTIMovil/src/java/py/com/documenta/ntimovil/controller/view/admin/CrearUsuario.java</file>
+            <file>file:/home/tokio/proyectos/documenta/nanduti/20191102/NTIMovil/web/restricted/admin/createUser.xhtml</file>
+            <file>file:/home/tokio/proyectos/documenta/nanduti/20191102/NTIMovil/web/WEB-INF/facelets/template/gdm.xhtml</file>
+            <file>file:/home/tokio/proyectos/documenta/nanduti/20191102/NTIMovil/web/restricted/admin/listRol.xhtml</file>
+            <file>file:/home/tokio/proyectos/documenta/nanduti/20191102/NTIMovil/web/WEB-INF/facelets/template/mainTemplate2.xhtml</file>
+            <file>file:/home/tokio/proyectos/documenta/nanduti/20191102/NTIMovil/web/restricted/admin/listUser.xhtml</file>
+            <file>file:/home/tokio/proyectos/documenta/nanduti/20191102/NTIMovil/web/WEB-INF/faces-config.xml</file>
+            <file>file:/home/tokio/proyectos/documenta/nanduti/20191102/NTIMovil/web/restricted/admin/listPerson.xhtml</file>
+            <file>file:/home/tokio/proyectos/documenta/nanduti/20191102/NTIMovil/web/WEB-INF/facelets/template/mainTemplatePopup.xhtml</file>
+            <file>file:/home/tokio/proyectos/documenta/nanduti/20191102/NTIMovil/web/restricted/admin/createPerson.xhtml</file>
+            <file>file:/home/tokio/proyectos/documenta/nanduti/20191102/NTIMovil/web/WEB-INF/facelets/template/gdmpopup.xhtml</file>
+            <file>file:/home/tokio/proyectos/documenta/nanduti/20191102/NTIMovil/web/restricted/admin/asignRole.xhtml</file>
+            <file>file:/home/tokio/proyectos/documenta/nanduti/20191102/NTIMovil/web/auth/login.xhtml</file>
+        </group>
+    </open-files>
+</project-private>

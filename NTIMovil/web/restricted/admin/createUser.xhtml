@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html lang="es-ES"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition  template="/WEB-INF/facelets/template/gdmpopup.xhtml"> 
+        <ui:define name="content-center">
+            <h:form id="form">
+                <p:growl id="growl" showDetail="true" />
+                <p:panel header="Usuario" style="max-height: 500px; max-width: 500px;">
+                    <p:messages />
+                    <h:panelGrid columns="2" cellspacing="10">
+                        <p:outputLabel value="Persona: *" />
+                        <p:selectOneMenu value="#{crearUsuario.selectedPersona.personaPK}" 
+                                         converter="ObjectConverter"
+                                         filter="true" 
+                                         filterMatchMode="startsWith"
+                                         effect="fade" >
+                            <f:selectItems value="#{crearUsuario.personaList}" var="c" itemLabel="#{c.nombre} #{c.apellido}" itemValue="#{c.personaPK}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="Nombre: *" />
+                        <p:inputText value="#{crearUsuario.usuario.username}" required="true" requiredMessage="Nombre requerido"/>
+
+                        <p:outputLabel value="Contraseña: *" />
+                        <p:password value="#{crearUsuario.usuario.password}" required="true" requiredMessage="Contraseña requerida"/>
+
+                        <p:outputLabel value="Correo: *" />
+                        <p:inputText value="#{crearUsuario.usuario.correo}" required="true" requiredMessage="Correo requerido"/>
+
+                        <p:outputLabel value="Celular: " />
+                        <p:inputText value="#{crearUsuario.usuario.nrocel}" />
+                        
+                        <p:outputLabel value="Código cdta.: " />
+                        <p:inputText value="#{crearUsuario.usuario.idusuariodocumenta}" 
+                                     label="Código cajero en Documenta"/>
+                    </h:panelGrid>
+                    <h:panelGrid>
+                        <p:commandButton value="Insertar" 
+                                         id="btnQuery"
+                                         actionListener="#{crearUsuario.crearUsuario()}" 
+                                         update=":form"
+                                         icon="fa fa-save" />
+                    </h:panelGrid>
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

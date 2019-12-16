@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="es-PY"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf" >
+
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+        <meta name="description" content="Pago de Servicios"/>
+        <meta name="author" content=""/> 
+        <link rel="shortcut icon" type="image/x-icon" href="#{nav.compressPath()}/assets/image/favicon.ico"/>
+        <title>#{confMB.appTitle()}</title>
+
+        <!--        <link href='https://fonts.googleapis.com/css?family=Anton|Passion+One|PT+Sans+Caption' rel='stylesheet' type='text/css'/>-->
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.js"></script>-->        
+
+        <!--Import Google Icon Font ok -->
+        <link href="#{nav.compressPath()}/css/materialize-font.min.css" rel="stylesheet"/>
+        <link href="#{nav.compressPath()}/css/atom.min.css" rel="stylesheet"/>
+        <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>-->
+
+        <script src="#{nav.compressPath()}/js/jquery-2.2.4.min.js"></script>  
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>-->
+
+        <link href="#{nav.compressPath()}/css/materialize.min.css" rel="stylesheet"/>        
+        <link href="#{nav.compressPath()}/css/font-awesome.min.css" rel="stylesheet"/>
+        <link href="#{nav.compressPath()}/css/error.min.css" rel="stylesheet"/>
+        <link href="#{nav.compressPath()}/css/custom.min.css" rel="stylesheet"/>
+
+        <script src="#{nav.compressPath()}/js/materialize.min.js"></script>
+        <script src="#{nav.compressPath()}/js/error.min.js"></script>
+
+
+    </h:head>
+
+
+    <h:body>
+        <!-- Error Page -->
+        <div class="container center">
+            <div class="error">
+                <div class="container-floud">
+                    <div class="col-xs-12 ground-color text-center">
+                        <div class="container-error-404 row">
+                            <div class="clip"><div class="shadow"><span class="digit thirdDigit"></span></div></div>
+                            <div class="clip"><div class="shadow"><span class="digit secondDigit"></span></div></div>
+                            <div class="clip"><div class="shadow"><span class="digit firstDigit"></span></div></div>
+                            <div class="msg">OH!<span class="triangle"></span></div>
+                        </div>
+                        <h2 class="h1">¡Lo sentimos! Página no encontrada.</h2>
+                        <a href="#{nav.getIndex()}" jsf:rendered="#{!loginMB.isAutologueo}"><i class="fa fa-reply" /> Volver al Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Error Page -->
+    </h:body>
+</html>
+

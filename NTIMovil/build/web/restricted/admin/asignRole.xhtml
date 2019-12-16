@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html lang="es-ES"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition  template="/WEB-INF/facelets/template/gdmpopup.xhtml"> 
+        <ui:define name="content-center">
+            <h:form id="form">
+                <p:growl id="growl" showDetail="true" />
+                <p:panel header="Usuario" style="max-height: 500px; max-width: 500px;">
+                    <p:messages />
+                    <h:panelGrid columns="2" cellspacing="10">
+                        <p:outputLabel value="Usuario: *" />
+                        <p:selectOneMenu value="#{asignarUsuariorol.selectedUsuario}" 
+                                         converter="ObjectConverter"
+                                         filter="true" 
+                                         filterMatchMode="startsWith"
+                                         effect="fade" >
+                            <f:selectItems value="#{asignarUsuariorol.usuarioList}" var="c" itemLabel="#{c.persona.nombre} #{c.persona.apellido}" itemValue="#{c}"/>
+                        </p:selectOneMenu>
+                        
+                        <p:outputLabel value="Rol: *" />
+                        <p:selectOneMenu value="#{asignarUsuariorol.selectedRol}" 
+                                         converter="ObjectConverter"
+                                         filter="true" 
+                                         filterMatchMode="startsWith"
+                                         effect="fade" >
+                            <f:selectItems value="#{asignarUsuariorol.rolList}" var="r" itemLabel="#{r.descripcion}" itemValue="#{r}"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                    <h:panelGrid>
+                        <p:commandButton value="Insertar" 
+                                         id="btnQuery"
+                                         actionListener="#{asignarUsuariorol.asignarRol()}" 
+                                         update=":form"
+                                         icon="fa fa-save" />
+                    </h:panelGrid>
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

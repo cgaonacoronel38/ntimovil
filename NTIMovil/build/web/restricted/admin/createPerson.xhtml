@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html lang="es-ES"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition  template="/WEB-INF/facelets/template/gdmpopup.xhtml"> 
+        <ui:define name="content-center">
+            <h:form id="form" >
+                <p:growl id="growl" showDetail="true" />
+                <p:panel header="Registrar persona" style="max-height: 500px; max-width: 500px;">
+                    <p:messages />
+                    <h:panelGrid columns="2" cellspacing="10">
+                        <p:outputLabel value="Nombres: *" />
+                        <p:inputText value="#{crearPersona.persona.nombre}" required="true" label="Nombre requerido"/>
+
+                        <p:outputLabel value="Apellidos: *" />
+                        <p:inputText value="#{crearPersona.persona.apellido}" required="true" label="Apellido requerido"/>
+
+                        <p:outputLabel value="Nro. de cédula: *" />
+                        <p:inputText value="#{crearPersona.persona.nrodoc}" required="true" label="Cédula requerida"/>
+                        
+                        <p:outputLabel value="Fecha de nacimiento: " />
+                        <p:calendar id="itFromDate" value="#{crearPersona.persona.fecnac}" 
+                                                pattern="dd/MM/yyyy" 
+                                                mask="true" navigator="true"/>
+
+                        <p:outputLabel value="Observaciones: " />
+                        <p:inputTextarea rows="6" cols="33" value="#{crearPersona.persona.obs}" />
+                    </h:panelGrid>
+                    <h:panelGrid>
+                        <p:commandButton value="Insertar" 
+                                         id="btnQuery"
+                                         actionListener="#{crearPersona.crearPersona()}" 
+                                         update=":form"
+                                         icon="fa fa-save" />
+                    </h:panelGrid>
+                </p:panel>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</html>

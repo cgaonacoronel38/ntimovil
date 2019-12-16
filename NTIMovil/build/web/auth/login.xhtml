@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+        </f:facet>
+        <title>#{confMB.appTitle()}</title>
+        <style>
+        </style>
+    </h:head>
+
+    <h:body>
+        <h:form id="form" >
+            <!--<p:messages id="growl" closable="true" showDetail="true" />-->
+            <p:focus context="form"/>
+            <div class="limiter">
+                <div class="container-login">
+                    <div class="wrap-login p-t-50 p-b-90">
+                        <form class="login-form validate-form flex-sb flex-w">
+                            <span class="login-form-title p-b-51">
+                                Ñanduti Movil
+                            </span>
+                            <div class="wrap-input">
+                                <p:inputText value="#{loginMB.username}"
+                                             class="input" 
+                                             required="true"
+                                             requiredMessage="El usuario es requerido"
+                                             id="username" 
+                                             placeholder="Usuario"/>
+                            </div>
+                            <div class="wrap-input">
+                                <p:password  feedback="false" 
+                                             value="#{loginMB.password}" 
+                                             class="input"
+                                             id="password" 
+                                             required="true"
+                                             requiredMessage="La contraseña es requerida"
+                                             placeholder="Contraseña"/>
+                            </div>
+                            <div class="wrap-input">
+                                <p:messages id="messages" showSummary="true" closable="true">
+                                    <p:autoUpdate />
+                                </p:messages>
+                            </div>
+                            <div class="container-login-form-btn" >
+                                <p:commandButton id="btnLogin"
+                                                 value="Acceder"  
+                                                 class="login-form-btn"
+                                                 process=":form:username :form:password @this"
+                                                 ajax="true"
+                                                 action="#{loginMB.signIn()}" 
+                                                 update=":form" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <f:facet name="last">
+                <h:outputStylesheet library="css" name="login.css" />
+            </f:facet>
+        </h:form>
+    </h:body>
+</html>

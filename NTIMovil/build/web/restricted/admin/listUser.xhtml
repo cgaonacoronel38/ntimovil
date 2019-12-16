@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html lang="es-ES"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition  template="/WEB-INF/facelets/template/gdm.xhtml"> 
+        <ui:define name="content-center">
+            <h:form id="form" >
+                <p:growl id="growl" showDetail="true" />
+
+                <p:toolbar>
+                    <f:facet name="left">
+                        <p:commandButton value="Nuevo usuario" icon="fa fa-plus" actionListener="#{listarUsuarios.crearUsuario()}" onclick="PF('block').show()" oncomplete="PF('block').hide()">
+                            <p:ajax event="dialogReturn" listener="#{listarUsuarios.actualizarUsuarios()}" update=":form:growl"
+                                    onstart="PF('block').show()" oncomplete="PF('block').hide()"/>
+                        </p:commandButton>
+                        <span class="ui-separator">
+                            <span class="ui-icon pi pi-ellipsis-v" />
+                        </span>
+                        <p:commandButton value="Crear persona" icon="fa fa-plus" actionListener="#{listarUsuarios.crearPersona}" onclick="PF('block').show()" oncomplete="PF('block').hide()">
+                            <p:ajax event="dialogReturn" listener="#{listarUsuarios.actualizarUsuarios()}" update=":form:growl"
+                                    onstart="PF('block').show()" oncomplete="PF('block').hide()"/>
+                        </p:commandButton>
+                        <p:commandButton value="Listar personas" icon="fa fa-list" actionListener="#{listarUsuarios.listarPersonas}" onclick="PF('block').show()" oncomplete="PF('block').hide()">
+                            <p:ajax event="dialogReturn" listener="#{listarUsuarios.actualizarUsuarios()}" update=":form:growl"
+                                    onstart="PF('block').show()" oncomplete="PF('block').hide()"/>
+                        </p:commandButton>
+                        <span class="ui-separator">
+                            <span class="ui-icon pi pi-ellipsis-v" />
+                        </span>
+                        <p:commandButton value="Asignar Rol" icon="fa fa-plus" actionListener="#{listarUsuarios.asignarRol()}" onclick="PF('block').show()" oncomplete="PF('block').hide()">
+                            <p:ajax event="dialogReturn" listener="#{listarUsuarios.actualizarUsuarios()}" update=":form:growl"
+                                    onstart="PF('block').show()" oncomplete="PF('block').hide()"/>
+                        </p:commandButton>
+                        <p:commandButton value="Listar roles" icon="fa fa-list" actionListener="#{listarUsuarios.listarPersonas}" onclick="PF('block').show()" oncomplete="PF('block').hide()">
+                            <p:ajax event="dialogReturn" listener="#{listarUsuarios.actualizarUsuarios()}" update=":form:growl"
+                                    onstart="PF('block').show()" oncomplete="PF('block').hide()"/>
+                        </p:commandButton>
+                    </f:facet>
+                </p:toolbar>
+                <br/>
+
+                <p:dataTable id="cars1" var="p" value="#{listarUsuarios.usuarioList}" 
+                             editable="true" style="margin-bottom:20px"
+                             rows="25" paginator="true"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="25,50,100">
+                    <f:facet name="header">
+                        Lista de usuarios
+                    </f:facet>
+
+                    <p:ajax event="rowEdit" listener="#{listarUsuarios.onRowEdit}" update=":form:growl" />
+                    <p:ajax event="rowEditCancel" listener="#{listarUsuarios.onRowCancel}" update=":form:growl" />
+
+                    <p:column headerText="Persona" filterBy="#{p.persona.nombre} #{p.persona.apellido}" filterMatchMode="contains">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{p.persona.nombre} #{p.persona.apellido}" /></f:facet>
+                            <f:facet name="input">
+                                <p:selectOneMenu value="#{p.persona}" 
+                                                 converter="ObjectConverter"
+                                                 filter="true" 
+                                                 filterMatchMode="startsWith"
+                                                 effect="fade" >
+                                    <f:selectItems value="#{listarUsuarios.personaList}" var="c" itemLabel="#{c.nombre} #{c.apellido}" itemValue="#{c}"/>
+                                </p:selectOneMenu>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Nombre" filterBy="#{p.username}" filterMatchMode="contains">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{p.username}" /></f:facet>
+                            <f:facet name="input"><p:inputText id="modelInput" value="#{p.username}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Contraseña" >
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="********" /></f:facet>
+                            <f:facet name="input"><p:password value="#{p.password}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Correo" filterBy="#{p.correo}" filterMatchMode="contains">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{p.correo}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{p.correo}" style="width:100%" label="Correo"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Celular" filterBy="#{p.nrocel}" filterMatchMode="contains">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{p.nrocel}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{p.nrocel}" style="width:100%" label="Celular"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Activo" style="width: 45px;" >
+                        <p:cellEditor>
+                            <f:facet name="output"><p:toggleSwitch value="#{p.activo}" disabled="true" /></f:facet>
+                            <f:facet name="input"><p:toggleSwitch value="#{p.activo}" /></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column style="width:35px" >
+                        <p:rowEditor />
+                    </p:column>
+                </p:dataTable>
+
+                <p:blockUI block=":form" widgetVar="block" styleClass="zindex-blockui">
+                    Procesando, favor espere...<br />
+                    <p:graphicImage library="img" name="ajaxloadingbar.gif" styleClass="z-index:90000!important;"/>
+                    <!--<h:graphicImage library="img" name="loading1.gif"/>-->
+                </p:blockUI>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</html>

@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html lang="es-ES"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition  template="/WEB-INF/facelets/template/gdm.xhtml"> 
+        <ui:define name="content-center">
+            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANoy7f1w0ygn_TdMDYu-H40lTPJ8aIVd8"></script>
+            <h:form id="form" >
+                <p:growl id="growl" showDetail="true" />
+                <p:panel header="Filtro de consulta">
+                    <h:panelGrid columns="2" cellspacing="10">
+                        <p:outputLabel value="Desde fecha: " />
+                        <p:calendar value="#{listarVisitas.desdeFecha}" pattern="dd/MM/yyyy" mask="true" />
+
+                        <p:outputLabel value="Hasta fecha: " />
+                        <p:calendar value="#{listarVisitas.hastaFecha}" pattern="dd/MM/yyyy" mask="true" />
+
+                        <p:outputLabel value="Usuario: " />
+                        <p:selectOneMenu value="#{listarVisitas.selectedUsuario}" 
+                                         converter="ObjectConverter"
+                                         filter="true" 
+                                         filterMatchMode="startsWith"
+                                         effect="fade" >
+                            <f:selectItem itemLabel="- Seleccionar -" noSelectionOption="true"/>
+                            <f:selectItems value="#{listarVisitas.usuarioList}" var="c" itemLabel="#{c.persona.nombre} #{c.persona.apellido}" itemValue="#{c}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="Motivo visita: " />
+                        <p:selectOneMenu value="#{listarVisitas.selectedMotivoVisita}" 
+                                         converter="ObjectConverter"
+                                         filter="true" 
+                                         filterMatchMode="startsWith"
+                                         effect="fade" >
+                            <f:selectItem itemLabel="- Seleccionar -" noSelectionOption="true"/>
+                            <f:selectItems value="#{listarVisitas.motivoVisitaList}" var="m" itemLabel="#{m.descripcion}" itemValue="#{m}"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                    <h:panelGrid>
+                        <p:commandButton value="Listar" 
+                                         id="btnQuery"
+                                         actionListener="#{listarVisitas.obtenerListaVisitasGeoreferenciadas()}" 
+                                         update="@([id$=gmap]) @([id$=growl])"
+                                         icon="fa fa-save" />
+                    </h:panelGrid>
+                </p:panel>
+                <p:gmap id="gmap" center="-25.2547637,-57.5732622" zoom="13" type="HYBRID" model="#{listarVisitas.advancedModel}" style="width:1200px;height:600px; margin: auto;">
+                    <p:ajax event="overlaySelect" listener="#{listarVisitas.onMarkerSelect}" update="@([id$=gmap])" />
+                    <p:gmapInfoWindow id="infoWindow">
+                        <p:outputPanel style="text-align: center; display: block; margin: auto">
+                            <h:outputText value="Cliente: #{listarVisitas.marker.title}" />
+                            <h:outputText value="Cobrador: #{listarVisitas.marker.data}" />
+                        </p:outputPanel>
+                    </p:gmapInfoWindow>
+                </p:gmap>
+                <br/><br/><br/><br/><br/>
+
+                <!-- Preload for demo -->
+                <p:outputPanel style="display:none">
+                    <p:graphicImage name="/demo/images/antalya/konyaalti.png" />
+                    <p:graphicImage name="/demo/images/antalya/ataturkparki.png" />
+                    <p:graphicImage name="/demo/images/antalya/kaleici.png" />
+                    <p:graphicImage name="/demo/images/antalya/karaalioglu.png" />
+                </p:outputPanel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

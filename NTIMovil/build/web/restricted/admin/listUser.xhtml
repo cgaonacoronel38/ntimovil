@@ -101,7 +101,7 @@
 
                     <p:column headerText="Activo" style="width: 45px;" >
                         <p:cellEditor>
-                            <f:facet name="output"><p:toggleSwitch value="#{p.activo}" disabled="true" /></f:facet>
+                            <f:facet name="output"><p:toggleSwitch value="#{p.tipoestado.codeBD eq 'ACTIVE'}"  disabled="true" /></f:facet>
                             <f:facet name="input"><p:toggleSwitch value="#{p.activo}" /></f:facet>
                         </p:cellEditor>
                     </p:column>

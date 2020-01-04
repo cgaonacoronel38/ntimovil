@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html lang="es-ES"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition  template="/WEB-INF/facelets/template/gdmpopup.xhtml"> 
+        <ui:define name="content-center">
+            <p:outputPanel>
+                <h:form id="formCVR">
+                    <p:messages id="msg" />
+                    <p:focus context="formCVR"/>
+                    <h:panelGrid columns="1" style="margin: 0 auto;" >
+                        <h:panelGrid columns="2" cellspacing="10">
+                            <p:outputLabel value="Motivo: *" />
+                            <p:inputText value="#{crearMotivoVisita.motivoVisita.descripcion}"
+                                         required="true" requiredMessage="El motivo es requerido!" />
+                        </h:panelGrid>
+                        <p:commandButton value="Insertar" 
+                                         id="btnQuery"
+                                         style="margin: 0 auto;"
+                                         update="@([id$=msg])"
+                                         actionListener="#{crearMotivoVisita.crearMotivoVisita()}" 
+                                         icon="fa fa-save" />
+                    </h:panelGrid>
+                </h:form>
+            </p:outputPanel>
+        </ui:define>
+    </ui:composition>
+</html>

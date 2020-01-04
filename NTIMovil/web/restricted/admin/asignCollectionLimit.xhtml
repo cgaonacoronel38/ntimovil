@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html lang="es-ES"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition  template="/WEB-INF/facelets/template/gdmpopup.xhtml"> 
+        <ui:define name="content-center">
+            <p:outputPanel>
+                <h:form id="formCVR">
+                    <p:messages id="msg" />
+                    <p:focus context="formCVR"/>
+                    <h:panelGrid columns="2" cellspacing="10">
+                        <p:outputLabel value="Usuario: *" />
+                        <p:selectOneMenu value="#{asignarLimiteCobranza.limitecobranza.usuario}" 
+                                         converter="ObjectConverter"
+                                         filter="true" 
+                                         filterMatchMode="startsWith"
+                                         effect="fade" >
+                            <f:selectItems value="#{asignarLimiteCobranza.usuarioList}" var="c" itemLabel="#{c.persona.nombre} #{c.persona.apellido}" itemValue="#{c}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="Días operación: *" />
+                        <p:inputNumber value="#{asignarLimiteCobranza.limitecobranza.diasoperacion}" 
+                                       thousandSeparator="." decimalPlaces="0"
+                                       title="Cantidad de días permitidos sin rendición." 
+                                       required="true" requiredMessage="Cantidad de días requeridos"/>
+
+                        <p:outputLabel value="Monto límite: *" />
+                        <p:inputNumber value="#{asignarLimiteCobranza.limitecobranza.montooperacion}" 
+                                       thousandSeparator="." decimalPlaces="0"  
+                                       title="Monto límite de cobranza acumulada."/>
+                    </h:panelGrid>
+                    <h:panelGrid>
+                        <p:commandButton value="Asignar" 
+                                         id="btnQuery"
+                                         actionListener="#{asignarLimiteCobranza.asignarLimite()}" 
+                                         update="@([id$=msg])"
+                                         icon="fa fa-save" />
+                    </h:panelGrid>
+                </h:form>
+            </p:outputPanel>
+        </ui:define>
+    </ui:composition>
+</html>

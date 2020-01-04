@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html lang="es-ES"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition  template="/WEB-INF/facelets/template/gdm.xhtml"> 
+        <ui:define name="content-center">
+            <h:form id="form" >
+                <p:growl id="growl" showDetail="true" />
+                <p:panel header="Filtro de consulta">
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Desde fecha: " />
+                        <p:calendar value="#{listarVisitas.desdeFecha}" pattern="dd/MM/yyyy" mask="true" />
+
+                        <p:outputLabel value="Hasta fecha: " />
+                        <p:calendar value="#{listarVisitas.hastaFecha}" pattern="dd/MM/yyyy" mask="true" />
+
+                        <p:outputLabel value="Usuario: " />
+                        <p:selectOneMenu value="#{listarVisitas.selectedUsuario}" 
+                                         converter="ObjectConverter"
+                                         filter="true" 
+                                         filterMatchMode="startsWith"
+                                         effect="fade" >
+                            <f:selectItem itemLabel="- Seleccionar -" noSelectionOption="true"/>
+                            <f:selectItems value="#{listarVisitas.usuarioList}" var="c" itemLabel="#{c.persona.nombre} #{c.persona.apellido}" itemValue="#{c}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="Motivo visita: " />
+                        <p:selectOneMenu value="#{listarVisitas.selectedMotivoVisita}" 
+                                         converter="ObjectConverter"
+                                         filter="true" 
+                                         filterMatchMode="startsWith"
+                                         effect="fade" >
+                            <f:selectItem itemLabel="- Seleccionar -" noSelectionOption="true"/>
+                            <f:selectItems value="#{listarVisitas.motivoVisitaList}" var="m" itemLabel="#{m.descripcion}" itemValue="#{m}"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                    <h:panelGrid>
+                        <p:commandButton value="Listar" 
+                                         id="btnQuery"
+                                         onclick="PF('block').show()" oncomplete="PF('block').hide()"
+                                         actionListener="#{listarVisitas.obtenerListaVisitas()}" 
+                                         update="@([id$=dtVisits]) @([id$=growl])"
+                                         icon="fa fa-save" />
+                    </h:panelGrid>
+                </p:panel>
+                <p:dataTable id="dtVisits" var="p" value="#{listarVisitas.visitaList}" 
+                             editable="true" style="margin-bottom:20px"
+                             rows="25" paginator="true" emptyMessage="No se encontraron resultados para los filtros seleccionados."
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+                             rowsPerPageTemplate="25,50,100">
+                    <f:facet name="header">
+                        Listado de visitas
+                        <p:commandButton id="toggler" type="button" value="Columnas" style="float:right; font-size: 11px; margin-top: -4px;" icon="pi pi-align-justify" />
+                        <p:columnToggler datasource=":form:dtVisits" trigger="toggler" />
+                    </f:facet>
+
+
+                    <f:facet name="{Exporters}">
+                        <div style="float:left;padding-top: 5px; margin-left: 10px;">
+                            <h:commandLink style="float: left">
+                                <p:graphicImage library="img" name="excel.png" width="62" id="excel"/>
+                                <p:dataExporter type="xls" target="form:dtVisits" fileName="listado_visitas" />
+                            </h:commandLink> 
+                            <p:tooltip for="excel" value="Descargar datos en formato excel." />
+                        </div>
+                    </f:facet>
+
+                    <p:column headerText="Cobrador" filterBy="#{p.cobrador}" filterMatchMode="contains">
+                        <h:outputText value="#{p.cobrador}" />
+                    </p:column>
+                    <p:column headerText="Documento cliente" filterBy="#{p.docCliente}" filterMatchMode="contains">
+                        <h:outputText value="#{p.docCliente}" />
+                    </p:column>
+                    <p:column headerText="Cliente" filterBy="#{p.cliente}" filterMatchMode="contains">
+                        <h:outputText value="#{p.cliente}" />
+                    </p:column>
+                    <p:column headerText="Motivo" filterBy="#{p.motivoVisita}" filterMatchMode="contains">
+                        <h:outputText value="#{p.motivoVisita}" />
+                    </p:column>
+                    <p:column headerText="Observaciones" filterBy="#{p.observaciones}" filterMatchMode="contains">
+                        <h:outputText value="#{p.observaciones}" />
+                    </p:column>
+                    <p:column headerText="Latitud" filterBy="#{p.latitud}" filterMatchMode="contains">
+                        <h:outputText value="#{p.latitud}" />
+                    </p:column>
+                    <p:column headerText="Longitud" filterBy="#{p.longitud}" filterMatchMode="contains">
+                        <h:outputText value="#{p.longitud}" />
+                    </p:column>
+                    <p:column headerText="Visitado" filterBy="#{p.longitud}" style="width: 45px;">
+                        <p:toggleSwitch value="#{p.visitado}" disabled="true" />
+                    </p:column>
+                    <p:column headerText="Fecha" filterBy="#{p.fecha}" filterMatchMode="contains">
+                        <h:outputText value="#{p.fecha}" />
+                    </p:column>
+                </p:dataTable>
+                <p:blockUI block=":form" widgetVar="block" styleClass="zindex-blockui">
+                    Procesando, favor espere...<br />
+                    <p:graphicImage library="img" name="ajaxloadingbar.gif" styleClass="z-index:90000!important;"/>
+                </p:blockUI>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

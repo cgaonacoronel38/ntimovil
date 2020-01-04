@@ -93,6 +93,7 @@ public class FilterPermits implements Filter {
 
             if (su == null || !signIn) {
                 log.info("Usuario no logueado, no se podrá verificar los permisos, redireccionando al home.");
+                session.setAttribute("message", "Cesión no iniciada!.");
 //                MsgUtil.addWarningMessage("Favor inicie cesión.");
                 res.sendRedirect(nav.getIndex()); //vamos al home
                 
@@ -118,6 +119,7 @@ public class FilterPermits implements Filter {
                 if(!urlValid) {
                     log.warn("La url {} esta INHABILITADA.", url);
                     res.sendRedirect(res.encodeRedirectURL(nav.getUserIndex() + "?status=3"));
+                    session.setAttribute("message", "El recurso no se encuentra habilitado.");
 //                    MsgUtil.addWarningMessage("El recurso no se encuentra habilitado.");
                     return;
                 }
@@ -126,6 +128,7 @@ public class FilterPermits implements Filter {
                 
                 if (!permissionEJB.isPermissionNATIVE(su.getIdusuario(), url)) {
                     log.info("El usuario: {}, NO tiene permiso para la url: {}", su.getUsername(), url);
+                    session.setAttribute("message", "No posee privilegios para acceder a este recurso.");
 //                    MsgUtil.addWarningMessage("No posee privilegios para acceder a este recurso.");
                     res.sendRedirect(res.encodeRedirectURL(nav.getUserIndex() + "?status=1"));
                     

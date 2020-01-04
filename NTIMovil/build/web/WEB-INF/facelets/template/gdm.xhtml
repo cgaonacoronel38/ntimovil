@@ -26,6 +26,23 @@
                                 <p:menuitem value="Usuarios" 
                                             icon="fa fa-sliders" 
                                             url="/ntimovil/restricted/admin/listUser.nti"/>
+                                <p:menuitem value="Limite cobranza" 
+                                            icon="fa fa-money" 
+                                            url="/ntimovil/restricted/admin/listCollectionLimit.nti"/>
+                                <p:menuitem value="Motivo de visita" 
+                                            icon="fa fa-book" 
+                                            url="/ntimovil/restricted/admin/listVisitReason.nti"/>
+                            </p:submenu>
+                            <p:submenu label="Reportes" icon="fa fa-plus">
+                                <p:menuitem value="Visitas" 
+                                            icon="fa fa-user" 
+                                            url="/ntimovil/restricted/report/listVisits.nti"/>
+                                <p:menuitem value="Visitas georeferenciadas" 
+                                            icon="fa fa-street-view" 
+                                            url="/ntimovil/restricted/report/listVisitsGeoreferenced.nti"/>
+                                <p:menuitem value="Transacciones" 
+                                            icon="fa fa-list-alt" 
+                                            url="/ntimovil/restricted/report/listTransaction.nti"/>
                             </p:submenu>
                         </p:menubar>
                     </h:form>

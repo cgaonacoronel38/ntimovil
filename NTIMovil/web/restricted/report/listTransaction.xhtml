@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html lang="es-ES"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition  template="/WEB-INF/facelets/template/gdm.xhtml"> 
+        <ui:define name="content-center">
+            <h:form id="form">
+                <h:outputScript library="js" name="js/calendar-locale.js"/>
+                <p:growl id="growl" showDetail="true" />
+                <p:panel header="Filtro de consulta">
+                    <h:panelGrid columns="2" cellspacing="10">
+                        <p:outputLabel value="Desde fecha: " />
+                        <p:calendar value="#{listarTrasnacciones.desdeFecha}" pattern="dd/MM/yyyy" mask="true" locale="es" />
+
+                        <p:outputLabel value="Hasta fecha: " />
+                        <p:calendar value="#{listarTrasnacciones.hastaFecha}" pattern="dd/MM/yyyy" mask="true" />
+
+                        <p:outputLabel value="Usuario: " />
+                        <p:selectOneMenu value="#{listarTrasnacciones.selectedUsuario}" 
+                                         converter="ObjectConverter"
+                                         filter="true" 
+                                         filterMatchMode="startsWith"
+                                         effect="fade" >
+                            <f:selectItem itemLabel="- Seleccionar -" noSelectionOption="true"/>
+                            <f:selectItems value="#{listarTrasnacciones.usuarioList}" var="c" itemLabel="#{c.persona.nombre} #{c.persona.apellido}" itemValue="#{c}"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                    <h:panelGrid>
+                        <p:commandButton value="Listar" 
+                                         id="btnQuery"
+                                         onclick="PF('block').show()" oncomplete="PF('block').hide()"
+                                         actionListener="#{listarTrasnacciones.listarTransacciones()}" 
+                                         update="@([id$=dtTrx]) @([id$=growl])"
+                                         icon="fa fa-save" />
+                    </h:panelGrid>
+                </p:panel>
+                <p:dataTable id="dtTrx" var="p" value="#{listarTrasnacciones.transaccionList}"
+                             editable="true" style="margin-bottom:20px" scrollable="true" scrollHeight="450"
+                             rows="25" paginator="true" emptyMessage="No se encontraron resultados para los filtros seleccionados."
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+                             rowsPerPageTemplate="25,50,100">
+                    <f:facet name="header">
+                        Listado de transacciones
+                        <p:commandButton id="toggler" type="button" value="Columnas" style="float:right; font-size: 11px; margin-top: -4px;" icon="pi pi-align-justify" />
+                        <p:columnToggler datasource=":form:dtTrx" trigger="toggler" />
+                    </f:facet>
+
+
+                    <f:facet name="{Exporters}">
+                        <div style="float:left;padding-top: 5px; margin-left: 10px;">
+                            <h:commandLink style="float: left" disabled="#{empty listarTrasnacciones.transaccionList}">
+                                <p:graphicImage library="img" name="excel.png" width="62" id="excel"/>
+                                <p:dataExporter type="xls" target="form:dtTrx" fileName="listado_transacciones" />
+                            </h:commandLink> 
+                            <p:tooltip for="excel" value="Descargar datos en formato excel." />
+                        </div>
+                    </f:facet>
+
+                    <p:column headerText="Transaccion" filterBy="#{p.idTransaccion}" filterMatchMode="contains">
+                        <h:outputText value="#{p.idTransaccion}" />
+                    </p:column>
+                    <p:column headerText="Fecha" filterBy="#{p.fecha}" filterMatchMode="contains">
+                        <h:outputText value="#{p.fecha}" />
+                    </p:column>
+                    <p:column headerText="Servicio" filterBy="#{p.servicio}" filterMatchMode="contains">
+                        <h:outputText value="#{p.servicio}" />
+                    </p:column>
+                    <p:column headerText="Ref. consulta" filterBy="#{p.refConsulta}" filterMatchMode="contains">
+                        <h:outputText value="#{p.refConsulta}" />
+                    </p:column>
+                    <p:column headerText="Ref. pago" filterBy="#{p.refPago}" filterMatchMode="contains">
+                        <h:outputText value="#{p.refPago}" />
+                    </p:column>
+                    <p:column headerText="Monto" filterBy="#{p.monto}" filterMatchMode="contains" style="width:200px;">
+                        <p:inputNumber value="#{p.monto}" 
+                                       thousandSeparator="." decimalPlaces="0"  
+                                       inputStyle="text-align: right" 
+                                       disabled="true"/>
+                    </p:column>
+                    <p:column headerText="Estado" filterBy="#{p.estado}" filterMatchMode="contains">
+                        <h:outputText value="#{p.estado}" />
+                    </p:column>
+                    <p:column headerText="Anulado" style="width: 80px;" filterBy="#{p.anulado}" filterMatchMode="exact">
+                        <h:outputText value="#{p.anulado ? 'SI' : 'NO'}" />
+                    </p:column>
+<!--                    <p:column filterBy="#{p.anulado}" filterMatchMode="in">
+                        <f:facet name="filter"> 
+                            <p:selectCheckboxMenu label="Anulado" 
+                                                  onchange="PF('@([id$=dtTrx])').filter()" styleClass="custom-filter"> 
+                                <f:converter converterId="javax.faces.Boolean" /> 
+                                <f:selectItem itemLabel="SI" itemValue="SI"/> 
+                                <f:selectItem itemLabel="NO" itemValue="NO" />
+                                <p:ajax update="@form" oncomplete="PF('@([id$=dtTrx])').filter();"/> 
+                            </p:selectCheckboxMenu> 
+                        </f:facet> 
+                        <h:outputText value="#{p.anulado ? 'SI' : 'NO'}" />
+                    </p:column>-->
+                    <p:column headerText="Forma pago" filterBy="#{p.tipoPago}" style="width: 120px;" filterMatchMode="contains">
+                        <h:outputText value="#{p.tipoPago}" />
+                    </p:column>
+                    <p:column headerText="Cobrador" filterBy="#{p.cobrador}" filterMatchMode="contains">
+                        <h:outputText value="#{p.cobrador}" />
+                    </p:column>
+                </p:dataTable>
+                <p:blockUI block=":form" widgetVar="block" styleClass="zindex-blockui">
+                    Procesando, favor espere...<br />
+                    <p:graphicImage library="img" name="ajaxloadingbar.gif" styleClass="z-index:90000!important;"/>
+                </p:blockUI>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

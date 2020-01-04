@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import py.com.documenta.ntimovil.common.MsgUtil;
 import py.com.documenta.ntimovil.controller.session.NtiSession;
+import py.com.documenta.ntimovil.ejb.enums.ETipoEstadoUsuario;
 import py.com.documenta.ntimovil.ejb.model.movil.Persona;
 import py.com.documenta.ntimovil.ejb.model.movil.Usuario;
 import py.com.documenta.ntimovil.ejb.sessionBean.movil.PersonaFacade;
@@ -90,12 +91,25 @@ public class ListarUsuarios implements Serializable {
 
     public void onRowEdit(RowEditEvent event) {
         try {
-            log.info("Password: " + password);
+//            log.info("Password: " + password);
             Usuario u = (Usuario) event.getObject();
-            if (password != null && !password.isEmpty()) {
-                u.setPassword(usuarioEJB.setPasswordSHA512Hex(password));
+//            if (password != null && !password.trim().isEmpty() && password.trim().length() > 3) {
+//                u.setPassword(usuarioEJB.setPasswordSHA512Hex(password));
+//            }
+            
+            if(!u.getActivo()){
+                u.setActivo(true);
+                u.setTipoestado(ETipoEstadoUsuario.BLOCKED_UNDEFINED);
+            } else {
+                if(u.getTipoestado().getCodeBD().equals(ETipoEstadoUsuario.BLOCKED_UNDEFINED.getCodeBD())){
+                    u.setTipoestado(ETipoEstadoUsuario.ACTIVE);
+                }
             }
+
             usuarioEJB.edit(u);
+            if (u.getIdusuariodocumenta() != null && u.getIdusuariodocumenta().longValue() > 0) {
+                usuarioEJB.updateNTIUserStatus(u.getIdusuariodocumenta().intValue(), u.getTipoestado().getCodeBD().equals(ETipoEstadoUsuario.ACTIVE.getCodeBD()));
+            }
             password = "";
             MsgUtil.addInfoMessage("Usuario " + u.getUsername() + " editado exitosamente!");
         } catch (Exception ex) {
@@ -128,7 +142,7 @@ public class ListarUsuarios implements Serializable {
         options.put("headerElement", "Registrar persona");
         PrimeFaces.current().dialog().openDynamic("createPerson", options, null);
     }
-    
+
     public void asignarRol() {
         Map<String, Object> options = new HashMap<>();
         options.put("width", 500);
@@ -150,7 +164,7 @@ public class ListarUsuarios implements Serializable {
         options.put("headerElement", "Listado de personas");
         PrimeFaces.current().dialog().openDynamic("listPerson", options, null);
     }
-    
+
     public void listarRoles() {
         Map<String, Object> options = new HashMap<String, Object>();
         options.put("modal", true);

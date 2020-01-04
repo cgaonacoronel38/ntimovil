@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html lang="es-ES"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition  template="/WEB-INF/facelets/template/gdm.xhtml"> 
+        <ui:define name="content-center">
+            <h:form id="form" >
+                <p:growl id="growl" showDetail="true" />
+                <p:dataTable id="dtVisitReasons" var="p" value="#{listarMotivoVisita.motivoVisitaList}" 
+                             editable="true" style="margin-bottom:20px"
+                             rows="25" paginator="true"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="25,50,100">
+                    <f:facet name="header">
+                        Motivos de visita
+                    </f:facet>
+
+                    <f:facet name="paginatorTopLeft">
+                        <p:commandButton value="Agregar" icon="fa fa-plus" action="#{listarMotivoVisita.crearMotivoVisita()}" 
+                                         onclick="PF('block').show()" oncomplete="PF('block').hide()" label="Agregar motivo de visita">
+                            <p:ajax event="dialogReturn" listener="#{listarMotivoVisita.informarRegistro()}" update=":form:growl :form:dtVisitReasons" 
+                                    onstart="PF('block').show()" oncomplete="PF('block').hide()"/>
+                        </p:commandButton>
+                    </f:facet>
+
+                    <p:ajax event="rowEdit" listener="#{listarMotivoVisita.onRowEdit}" update=":form:growl" />
+                    <p:ajax event="rowEditCancel" listener="#{listarMotivoVisita.onRowCancel}" update=":form:growl" />
+
+                    <p:column headerText="Código" filterBy="#{p.descripcion}" style="width: 100px;" filterMatchMode="contains">
+                        <h:outputText value="#{p.idmotivovisita}" />
+                    </p:column>
+
+                    <p:column headerText="Motivo de visita" filterBy="#{p.descripcion}" filterMatchMode="contains">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{p.descripcion}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{p.descripcion}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Activo" style="width: 45px;" >
+                        <p:cellEditor>
+                            <f:facet name="output"><p:toggleSwitch value="#{p.activo}"  disabled="true" /></f:facet>
+                            <f:facet name="input"><p:toggleSwitch value="#{p.activo}" /></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column style="width:35px" >
+                        <p:rowEditor />
+                    </p:column>
+                </p:dataTable>
+                <p:blockUI block=":form" widgetVar="block" styleClass="zindex-blockui">
+                    Procesando, favor espere...<br />
+                    <p:graphicImage library="img" name="ajaxloadingbar.gif" styleClass="z-index:90000!important;"/>
+                </p:blockUI>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

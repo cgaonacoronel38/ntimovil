@@ -21,5 +21,42 @@
             <file>file:/home/tokio/proyectos/documenta/nanduti/20191102/NTIMovil/web/restricted/admin/asignRole.xhtml</file>
             <file>file:/home/tokio/proyectos/documenta/nanduti/20191102/NTIMovil/web/auth/login.xhtml</file>
         </group>
+        <group name="ntimovil">
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovil/src/java/py/com/documenta/ntimovil/controller/view/admin/ListarLimitesCobranza.java</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovil/src/java/py/com/documenta/ntimovil/controller/view/admin/ListarMotivoVisita.java</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovil/web/restricted/admin/createVisitReason.xhtml</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovil/web/restricted/admin/listPerson.xhtml</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovil/web/restricted/report/listVisits.xhtml</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovil/web/WEB-INF/facelets/template/mainTemplate2.xhtml</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovil/src/java/py/com/documenta/ntimovil/controller/view/report/ListarTransacciones.java</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovil/src/java/py/com/documenta/ntimovil/controller/view/report/ListarVisitas.java</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovil/web/restricted/admin/listVisitReason.xhtml</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovil/web/restricted/admin/listUser.xhtml</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovil/web/restricted/admin/asignCollectionLimit.xhtml</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovil/web/restricted/report/listVisitsGeoreferenced.xhtml</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovil/web/WEB-INF/facelets/template/gdm.xhtml</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovil/web/restricted/report/listTransaction.xhtml</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovil/src/java/py/com/documenta/ntimovil/controller/view/admin/AsignarLimiteCobranza.java</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovil/src/java/py/com/documenta/ntimovil/filter/FilterPermits.java</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovil/web/restricted/admin/listCollectionLimit.xhtml</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovil/src/java/py/com/documenta/ntimovil/controller/view/admin/ListarUsuarios.java</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovil/web/auth/login.xhtml</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovil/src/java/py/com/documenta/ntimovil/controller/view/admin/CrearMotivoVisita.java</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovil/web/restricted/admin/createUser.xhtml</file>
+        </group>
+        <group name="nandutirest"/>
+        <group name="nandutimovil">
+            <file>file:/home/cgaona/proyectos/ntimovil/NTIMovil/src/java/py/com/documenta/ntimovil/controller/view/admin/AsignarLimiteCobranza.java</file>
+            <file>file:/home/cgaona/proyectos/ntimovil/NTIMovil/web/restricted/report/listTransaction.xhtml</file>
+            <file>file:/home/cgaona/proyectos/ntimovil/NTIMovil/src/java/py/com/documenta/ntimovil/common/MsgUtil.java</file>
+            <file>file:/home/cgaona/proyectos/ntimovil/NTIMovil/web/restricted/report/listVisits.xhtml</file>
+            <file>file:/home/cgaona/proyectos/ntimovil/NTIMovil/web/restricted/admin/asignCollectionLimit.xhtml</file>
+            <file>file:/home/cgaona/proyectos/ntimovil/NTIMovil/web/restricted/admin/createVisitReason.xhtml</file>
+            <file>file:/home/cgaona/proyectos/ntimovil/NTIMovil/web/restricted/admin/listCollectionLimit.xhtml</file>
+            <file>file:/home/cgaona/proyectos/ntimovil/NTIMovil/src/java/py/com/documenta/ntimovil/controller/view/admin/ListarLimitesCobranza.java</file>
+            <file>file:/home/cgaona/proyectos/ntimovil/NTIMovil/web/restricted/admin/listVisitReason.xhtml</file>
+            <file>file:/home/cgaona/proyectos/ntimovil/NTIMovil/src/java/py/com/documenta/ntimovil/controller/view/report/ListarVisitas.java</file>
+            <file>file:/home/cgaona/proyectos/ntimovil/NTIMovil/src/java/py/com/documenta/ntimovil/controller/view/admin/ListarMotivoVisita.java</file>
+        </group>
     </open-files>
 </project-private>

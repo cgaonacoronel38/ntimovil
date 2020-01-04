@@ -25,6 +25,7 @@ import py.com.documenta.ntimovil.ejb.model.movil.Usuario;
  */
 @Stateless
 public class UsuarioFacade extends AbstractFacadeMovil<Usuario> {
+
     private final Logger log = LoggerFactory.getLogger(UsuarioFacade.class);
 
     public UsuarioFacade() {
@@ -112,10 +113,10 @@ public class UsuarioFacade extends AbstractFacadeMovil<Usuario> {
             }
 
         } catch (Exception ex) {
-            throw new Exception("Error al recuperar usuario",ex);
+            throw new Exception("Error al recuperar usuario", ex);
         }
     }
-    
+
     public List<Usuario> findByUserId(Integer idUser) throws Exception {
         try {
             StringBuilder sb = new StringBuilder();
@@ -167,7 +168,7 @@ public class UsuarioFacade extends AbstractFacadeMovil<Usuario> {
             throw ex;
         }
     }
-    
+
     public List<Usuario> findByLogin(String login) throws Exception {
         try {
             StringBuilder sb = new StringBuilder();
@@ -414,6 +415,22 @@ public class UsuarioFacade extends AbstractFacadeMovil<Usuario> {
 
             if (q.executeUpdate() != 1) {
                 throw new Exception("No se modificó el campo lastaccess. verifique el SQL.");
+            }
+        } catch (Exception ex) {
+            throw ex;
+        }
+    }
+
+    public void updateNTIUserStatus(Integer idDctaUser, boolean activo) throws Exception {
+        try {
+            String status = activo ? "'ACTIVE'" : "'BLOCKED_UNDEFINED'";
+            String sql = "update base.usuario\n"
+                    + " set tipoestado = "+status
+                    + " where idusuariodocumenta = "+idDctaUser;
+
+            Query q = getEntityManager().createNativeQuery(sql);
+            if (q.executeUpdate() != 1) {
+                throw new Exception("No se modificó el estado del usuario.");
             }
         } catch (Exception ex) {
             throw ex;

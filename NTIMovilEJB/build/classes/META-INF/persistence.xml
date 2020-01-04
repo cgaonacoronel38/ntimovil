@@ -13,6 +13,7 @@
     <class>py.com.documenta.ntimovil.ejb.model.movil.Permisorol</class>
     <class>py.com.documenta.ntimovil.ejb.model.movil.Rol</class>
     <class>py.com.documenta.ntimovil.ejb.model.movil.Usuariorol</class>
+    <class>py.com.documenta.ntimovil.ejb.model.movil.Limitecobranza</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>
@@ -20,5 +21,15 @@
     <jta-data-source>java:/jboss/datasources/NTIMOVIL</jta-data-source>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties/>
+  </persistence-unit>
+  <persistence-unit name="JPEJBPU" transaction-type="JTA">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <jta-data-source>java:/jboss/datasources/REDCOBROSJP</jta-data-source>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="eclipselink.logging.parameters" value="true"/>
+      <property name="eclipselink.logging.level.sql" value="FINE"/>
+      <property name="eclipselink.logging.level" value="FINE"/>
+    </properties>
   </persistence-unit>
 </persistence>

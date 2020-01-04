@@ -10,5 +10,24 @@
             <file>file:/home/tokio/proyectos/documenta/nanduti/20191102/NTIMovilEJB/src/java/py/com/documenta/ntimovil/ejb/model/movil/UsuariorolPK.java</file>
             <file>file:/home/tokio/proyectos/documenta/nanduti/20191102/NTIMovilEJB/src/java/py/com/documenta/ntimovil/ejb/model/movil/Rol.java</file>
         </group>
+        <group name="ntimovil">
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovilEJB/src/java/py/com/documenta/ntimovil/ejb/model/movil/Limitecobranza.java</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovilEJB/src/java/py/com/documenta/ntimovil/ejb/sessionBean/movil/PermisoMenuFacade.java</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovilEJB/src/java/py/com/documenta/ntimovil/ejb/model/movil/Usuario.java</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovilEJB/src/java/py/com/documenta/ntimovil/ejb/sessionBean/redcobrosjp/TransaccionRcFacade.java</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovilEJB/src/java/py/com/documenta/ntimovil/ejb/bean/TransaccionBean.java</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovilEJB/src/java/py/com/documenta/ntimovil/ejb/sessionBean/movil/UsuarioFacade.java</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovilEJB/src/java/py/com/documenta/ntimovil/ejb/sessionBean/movil/MotivoVisitaFacade.java</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovilEJB/src/java/py/com/documenta/ntimovil/ejb/sessionBean/movil/VisitaFacade.java</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovilEJB/src/conf/persistence.xml</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovilEJB/src/java/py/com/documenta/ntimovil/ejb/model/redcobrosjp/TransaccionRc.java</file>
+            <file>file:/home/tokio/proyectos/documenta/nandutimovil/proyectos/NTIMovilEJB/src/java/py/com/documenta/ntimovil/ejb/bean/VisitaBean.java</file>
+        </group>
+        <group name="nanduimovil">
+            <file>file:/home/cgaona/proyectos/ntimovil/NTIMovilEJB/src/java/py/com/documenta/ntimovil/ejb/bean/TransaccionBean.java</file>
+        </group>
+        <group name="nandutimovil">
+            <file>file:/home/cgaona/proyectos/ntimovil/NTIMovilEJB/src/java/py/com/documenta/ntimovil/ejb/model/movil/Limitecobranza.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -47,7 +47,7 @@ private static final long serialVersionUID = 1L;
     @Column(name = "username")
     private String username;
     @Size(max = 200)
-    @Column(name = "password")
+    @Column(name = "password", updatable = false)
     private String password;
     @Basic(optional = false)
     @Column(name = "activo")
